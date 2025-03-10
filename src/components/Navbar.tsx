@@ -1,19 +1,20 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState, useEffect } from "react"
-import { Link, useLocation } from "react-router-dom"
-import { ChevronDown } from "lucide-react"
-import logoSymbol from "../assets/images/logo-symbol.svg"
-import { useMediaQuery } from "../hooks/useMediaQuery"
+import type React from "react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
+import logoSymbol from "../assets/images/logo-symbol.svg";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const Navbar: React.FC = () => {
-  const [isProjectsMenuOpen, setIsProjectsMenuOpen] = useState(false)
-  const [isVisible, setIsVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
+  const [isProjectsMenuOpen, setIsProjectsMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  const location = useLocation()
-  const isLargeScreen = useMediaQuery("(min-width: 1024px)")
+  const location = useLocation();
+  const isLargeScreen = useMediaQuery("(min-width: 1024px)");
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   // Lista de proyectos para el menú desplegable
   const projects = [
@@ -26,51 +27,52 @@ const Navbar: React.FC = () => {
     { title: "Cocemfe", path: "/proyectos/cocemfe" },
     { title: "Gabi Lucas", path: "/proyectos/gabilucas" },
     { title: "Hidrovolt", path: "/proyectos/hidrovolt" },
-  ]
+  ];
 
   // Función para manejar el scroll a secciones
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== "/") {
       // Navegar a la página principal y luego hacer scroll
-      window.history.pushState({ scrollTo: sectionId }, "", "/")
-      window.location.reload() // Forzar recarga para aplicar el estado
+      window.history.pushState({ scrollTo: sectionId }, "", "/");
+      window.location.reload(); // Forzar recarga para aplicar el estado
     } else {
-      const section = document.getElementById(sectionId)
+      const section = document.getElementById(sectionId);
       if (section) {
-        section.scrollIntoView({ behavior: "smooth" })
+        section.scrollIntoView({ behavior: "smooth" });
       }
     }
-  }
+  };
 
   // Efecto para manejar el scroll cuando se navega a la página principal
   useEffect(() => {
-    if (location.pathname === "/" && location.state && location.state.scrollTo) {
+    if (
+      location.pathname === "/" &&
+      location.state &&
+      location.state.scrollTo
+    ) {
       setTimeout(() => {
-        const section = document.getElementById(location.state.scrollTo)
+        const section = document.getElementById(location.state.scrollTo);
         if (section) {
-          section.scrollIntoView({ behavior: "smooth" })
+          section.scrollIntoView({ behavior: "smooth" });
         }
-      }, 100)
+      }, 100);
     }
-  }, [location])
+  }, [location]);
 
-  // Efecto para controlar la visibilidad del navbar al hacer scroll
-   // Cerrar menús al hacer clic fuera
+  // Cerrar menús al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
+      const target = e.target as HTMLElement;
       if (!target.closest(".projects-menu-container")) {
-        setIsProjectsMenuOpen(false)
+        setIsProjectsMenuOpen(false);
       }
-    }
+    };
 
-    document.addEventListener("click", handleClickOutside)
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
-  }, [])
-
-
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav
@@ -84,7 +86,9 @@ const Navbar: React.FC = () => {
             <img
               src={logoSymbol || "/placeholder.svg"}
               alt="Estudio Amaro"
-              className={`${isLargeScreen ? "h-12" : "h-8"} w-auto transition-all duration-300`}
+              className={`${
+                isLargeScreen ? "h-12" : "h-8"
+              } w-auto transition-all duration-300`}
             />
           </Link>
 
@@ -95,19 +99,37 @@ const Navbar: React.FC = () => {
               <button
                 className="flex items-center gap-1 text-[#090F4C] hover:opacity-70 transition-opacity text-sm sm:text-base"
                 onClick={(e) => {
-                  e.stopPropagation()
-                  setIsProjectsMenuOpen(!isProjectsMenuOpen)
+                  e.stopPropagation();
+                  setIsProjectsMenuOpen(!isProjectsMenuOpen);
                 }}
               >
                 Proyectos{" "}
                 <ChevronDown
                   size={16}
-                  className={isProjectsMenuOpen ? "transform rotate-180 transition-transform" : "transition-transform"}
+                  className={
+                    isProjectsMenuOpen
+                      ? "transform rotate-180 transition-transform"
+                      : "transition-transform"
+                  }
                 />
               </button>
 
               {isProjectsMenuOpen && (
-                <div className="absolute top-full right-0 mt-2 w-64 bg-white shadow-lg rounded-md overflow-hidden z-50">
+                <div
+                  className={`
+                    fixed left-0 right-0 
+                    bg-white shadow-lg 
+                    overflow-y-auto
+                    z-[100]
+                    mt-2
+                    mx-4
+                    rounded-md
+                    ${isMobile ? "max-h-[80vh]" : "absolute w-64 right-0"}
+                  `}
+                  style={{
+                    top: isMobile ? "4rem" : "auto", // Ajusta esto según la altura de tu navbar
+                  }}
+                >
                   <div className="py-2">
                     {projects.map((project, index) => (
                       <Link
@@ -115,8 +137,8 @@ const Navbar: React.FC = () => {
                         to={project.path}
                         className="block px-4 py-2 text-[#090F4C] hover:bg-[#090F4C]/5 transition-colors"
                         onClick={() => {
-                          setIsProjectsMenuOpen(false)
-                          window.scrollTo(0, 0)
+                          setIsProjectsMenuOpen(false);
+                          window.scrollTo(0, 0);
                         }}
                       >
                         {project.title}
@@ -144,8 +166,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
-
+export default Navbar;
