@@ -38,12 +38,12 @@ const ZaraProject: React.FC = () => {
         images={[
           {
             src: image1,
-            alt: "Construcción de iconos",
+            alt: "Descubre tu tienda",
             aspectRatio: "4/3",
           },
           {
             src: image2,
-            alt: "Plano y móvil",
+            alt: "Construcción de iconos",
             aspectRatio: "4/3",
           },
         ]}
@@ -54,21 +54,26 @@ const ZaraProject: React.FC = () => {
         images={[
           {
             src: image4,
-            alt: "Construcción de iconos",
+            alt: "Plano y móvil",
             aspectRatio: "4/3",
           },
           {
             src: image5,
-            alt: "Plano y móvil",
+            alt: "Iphone-min",
             aspectRatio: "4/3",
           },
         ]}
       />
 
       {/* Imagen individual */}
-      <ProjectImage src={image3} alt="Vista detallada en iPhone" aspectRatio="16/9" className="mb-16" />
+      <ProjectImage
+        src={image3}
+        alt="Figma"
+        aspectRatio="16/9"
+        className="mb-16"
+      />
     </ProjectLayout>
-  )
+  );
 }
 
 export default ZaraProject
