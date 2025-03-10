@@ -117,18 +117,15 @@ const Navbar: React.FC = () => {
               {isProjectsMenuOpen && (
                 <div
                   className={`
-                    fixed left-0 right-0 
+                    absolute 
                     bg-white shadow-lg 
                     overflow-y-auto
                     z-[100]
                     mt-2
-                    mx-4
                     rounded-md
-                    ${isMobile ? "max-h-[80vh]" : "absolute w-64 right-0"}
+                    ${isMobile ? "left-0 w-64 max-h-[80vh]" : "right-0 w-64"}
                   `}
-                  style={{
-                    top: isMobile ? "4rem" : "auto", // Ajusta esto según la altura de tu navbar
-                  }}
+
                 >
                   <div className="py-2">
                     {projects.map((project, index) => (
