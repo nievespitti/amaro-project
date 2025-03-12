@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import logoSymbol from "../assets/images/logo-symbol.svg";
+import logo from "../assets/images/logo-full.svg";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const Navbar: React.FC = () => {
@@ -84,7 +85,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <img
-              src={logoSymbol || "/placeholder.svg"}
+              src={isLargeScreen ? logo : logoSymbol || "/placeholder.svg"}
               alt="Estudio Amaro"
               className={`${
                 isLargeScreen ? "h-12" : "h-8"
@@ -125,7 +126,6 @@ const Navbar: React.FC = () => {
                     rounded-md
                     ${isMobile ? "left-0 w-64 max-h-[80vh]" : "right-0 w-64"}
                   `}
-
                 >
                   <div className="py-2">
                     {projects.map((project, index) => (
