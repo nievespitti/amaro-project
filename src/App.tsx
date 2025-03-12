@@ -32,6 +32,12 @@ function ScrollToTop() {
               behavior: "smooth",
               block: "start",
             });
+                      <section
+                        id="Contacto"
+                        className="mt-16 mb-16 w-[85%]"
+                        style={{ scrollMarginTop: "100px" }}
+                      ></section>;
+
           }
         }, 100);
       } else {
@@ -49,6 +55,7 @@ function ScrollToTop() {
 
   return null;
 }
+
 
 function App() {
   console.log("App.tsx está cargando...");

@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react"; // Eliminado useRef ya que no lo necesitamos
 import { motion } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -42,7 +42,6 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
   const isLargeScreen = useMediaQuery("(min-width: 1600px)");
   const navigate = useNavigate();
   const location = useLocation();
-  const isInitialMount = useRef(true);
 
   // Normalizar los créditos para manejar tanto string como array
   const normalizedCredits = typeof credits === "string" ? [] : credits;
@@ -55,19 +54,15 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
 
   // Este efecto se ejecuta cuando cambia la ruta
   useEffect(() => {
-    // Solo hacemos scroll al inicio si no es el montaje inicial
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      window.scrollTo({
-        top: 0,
-        behavior: "instant", // Usamos "instant" para un scroll inmediato
-      });
-    }
+    // Scroll al inicio cuando cambia la ruta
+    window.scrollTo({
+      top: 0,
+      behavior: "instant", // Usamos "instant" para un scroll inmediato
+    });
   }, [location.pathname]);
 
   function navigateToProject(path: string): void {
-    // Solo navegamos a la ruta, el efecto de arriba se encargará del scroll
+    // Simplemente navegamos a la ruta
     navigate(path);
   }
 
@@ -158,10 +153,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
               {previousProject ? (
                 <Link
                   to={previousProject.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateToProject(previousProject.path);
-                  }}
+                  onClick={() => navigateToProject(previousProject.path)}
                   className="flex items-center gap-2 text-[14px] hover:text-opacity-70 transition-colors"
                 >
                   <ArrowLeft size={20} />
@@ -173,10 +165,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
               {nextProject && (
                 <Link
                   to={nextProject.path}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigateToProject(nextProject.path);
-                  }}
+                  onClick={() => navigateToProject(nextProject.path)}
                   className="flex items-center gap-2 text-[14px] hover:text-opacity-70 transition-colors"
                 >
                   <span>Proyecto siguiente</span>
@@ -189,7 +178,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
       </motion.div>
 
       {/* Footer */}
-      <footer className="w-full bg-white  mt-auto">
+      <footer className="w-full bg-white mt-auto">
         <div className="max-w-[1600px] w-full mx-auto px-4 md:px-8 py-8">
           <div className="flex justify-between items-center">
             <div className="text-sm text-[#090F4C]">©2025 Estudio Amaro</div>
