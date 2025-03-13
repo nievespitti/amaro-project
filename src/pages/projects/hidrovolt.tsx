@@ -17,6 +17,12 @@ import image6 from "../../assets/images/projects/hidrovolt/06_Tarjetas.jpg"
 import image7 from "../../assets/images/projects/hidrovolt/07_Posters.jpg"
 import image8 from "../../assets/images/projects/hidrovolt/08_Camion.jpg"
 
+
+// Definimos un aspect ratio consistente para todas las imágenes
+// Usamos 3/2 para que coincida con el aspecto de las imágenes en Home
+const CONSISTENT_ASPECT_RATIO = "3/2"
+
+
 const HidrovoltProject: React.FC = () => {
   return (
     <ProjectLayout
@@ -36,41 +42,66 @@ const HidrovoltProject: React.FC = () => {
         path: "/proyectos/premium-technology",
       }}
     >
-      {/* Logo GIF */}
-      <ProjectImage src={image1} alt="Hidrovolt logo animado" aspectRatio="16/9" />
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+        {/* Logo GIF */}
+        <ProjectImage
+          src={image1}
+          alt="Hidrovolt logo animado"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Stickers */}
-      <ProjectImage src={image2} alt="Hidrovolt stickers" aspectRatio="16/9" />
+        {/* Stickers */}
+        <ProjectImage
+          src={image2}
+          alt="Hidrovolt stickers"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* iPhone y Web */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image3,
-            alt: "Hidrovolt aplicación en iPhone",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image4,
-            alt: "Hidrovolt diseño web",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* iPhone y Web */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image3,
+              alt: "Hidrovolt aplicación en iPhone",
+            },
+            {
+              src: image4,
+              alt: "Hidrovolt diseño web",
+            },
+          ]}
+        />
 
-      {/* Camiseta */}
-      <ProjectImage src={image5} alt="Hidrovolt camiseta" aspectRatio="16/9" />
+        {/* Camiseta */}
+        <ProjectImage
+          src={image5}
+          alt="Hidrovolt camiseta"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Tarjetas */}
-      <ProjectImage src={image6} alt="Hidrovolt tarjetas de presentación" aspectRatio="16/9" />
+        {/* Tarjetas */}
+        <ProjectImage
+          src={image6}
+          alt="Hidrovolt tarjetas de presentación"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Posters */}
-      <ProjectImage src={image7} alt="Hidrovolt posters" aspectRatio="16/9" />
+        {/* Posters */}
+        <ProjectImage
+          src={image7}
+          alt="Hidrovolt posters"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Camión */}
-      <ProjectImage src={image8} alt="Hidrovolt camión" aspectRatio="16/9" />
+        {/* Camión */}
+        <ProjectImage
+          src={image8}
+          alt="Hidrovolt camión"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
+      </div>
     </ProjectLayout>
-  )
+  );
 }
 
 export default HidrovoltProject

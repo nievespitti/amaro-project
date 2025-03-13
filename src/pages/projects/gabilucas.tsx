@@ -16,6 +16,12 @@ import image5 from "../../assets/images/projects/gabilucas/05_Ilustracion 05 (do
 import image6 from "../../assets/images/projects/gabilucas/06_Ilustracion 06 (doble derecha).jpg"
 import image7 from "../../assets/images/projects/gabilucas/07_Ilustracion 07.jpg"
 
+
+// Definimos un aspect ratio consistente para todas las imágenes
+// Usamos 3/2 para que coincida con el aspecto de las imágenes en Home
+const CONSISTENT_ASPECT_RATIO = "3/2"
+
+
 const GabilucasProject: React.FC = () => {
   return (
     <ProjectLayout
@@ -36,48 +42,60 @@ const GabilucasProject: React.FC = () => {
         path: "/proyectos/hidrovolt",
       }}
     >
-      {/* Ilustración 1 */}
-      <ProjectImage src={image1} alt="Gabi Lucas ilustración 01" aspectRatio="16/9" />
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+        {/* Ilustración 1 */}
+        <ProjectImage
+          src={image1}
+          alt="Gabi Lucas ilustración 01"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Par de ilustraciones */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image2,
-            alt: "Gabi Lucas ilustración 02",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image3,
-            alt: "Gabi Lucas ilustración 03",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* Par de ilustraciones */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image2,
+              alt: "Gabi Lucas ilustración 02",
+            },
+            {
+              src: image3,
+              alt: "Gabi Lucas ilustración 03",
+            },
+          ]}
+        />
 
-      {/* Ilustración 4 */}
-      <ProjectImage src={image4} alt="Gabi Lucas ilustración 04" aspectRatio="16/9" />
+        {/* Ilustración 4 */}
+        <ProjectImage
+          src={image4}
+          alt="Gabi Lucas ilustración 04"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Par de ilustraciones */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image5,
-            alt: "Gabi Lucas ilustración 05",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image6,
-            alt: "Gabi Lucas ilustración 06",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* Par de ilustraciones */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image5,
+              alt: "Gabi Lucas ilustración 05",
+            },
+            {
+              src: image6,
+              alt: "Gabi Lucas ilustración 06",
+            },
+          ]}
+        />
 
-      {/* Ilustración 7 */}
-      <ProjectImage src={image7} alt="Gabi Lucas ilustración 07" aspectRatio="16/9" />
+        {/* Ilustración 7 */}
+        <ProjectImage
+          src={image7}
+          alt="Gabi Lucas ilustración 07"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
+      </div>
     </ProjectLayout>
-  )
+  );
 }
 
 export default GabilucasProject

@@ -17,6 +17,11 @@ import image6 from "../../assets/images/projects/breakfast-touch/06_Pegatinas.jp
 import image7 from "../../assets/images/projects/breakfast-touch/07_Rollo poster(doble izquierda).jpg"
 import image8 from "../../assets/images/projects/breakfast-touch/08_Camiseta(doble derecha).jpg"
 
+
+// Definimos un aspect ratio consistente para todas las imágenes
+// Usamos 3/2 para que coincida con el aspecto de las imágenes en Home
+const CONSISTENT_ASPECT_RATIO = "3/2"
+
 const BreakfastTouchProject: React.FC = () => {
   return (
     <ProjectLayout
@@ -36,41 +41,66 @@ const BreakfastTouchProject: React.FC = () => {
         path: "/proyectos/hector-leon",
       }}
     >
-      {/* Spotify */}
-      <ProjectImage src={image1} alt="Breakfast Touch en Spotify" aspectRatio="16/9" />
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+        {/* Spotify */}
+        <ProjectImage
+          src={image1}
+          alt="Breakfast Touch en Spotify"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Discos */}
-      <ProjectImage src={image2} alt="Discos de Breakfast Touch" aspectRatio="16/9" />
+        {/* Discos */}
+        <ProjectImage
+          src={image2}
+          alt="Discos de Breakfast Touch"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Vinilo */}
-      <ProjectImage src={image3} alt="Vinilo de Breakfast Touch" aspectRatio="16/9" />
+        {/* Vinilo */}
+        <ProjectImage
+          src={image3}
+          alt="Vinilo de Breakfast Touch"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Grupo */}
-      <ProjectImage src={image4} alt="Grupo Breakfast Touch" aspectRatio="16/9" />
+        {/* Grupo */}
+        <ProjectImage
+          src={image4}
+          alt="Grupo Breakfast Touch"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Poster */}
-      <ProjectImage src={image5} alt="Poster de Breakfast Touch" aspectRatio="16/9" />
+        {/* Poster */}
+        <ProjectImage
+          src={image5}
+          alt="Poster de Breakfast Touch"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Pegatinas */}
-      <ProjectImage src={image6} alt="Pegatinas de Breakfast Touch" aspectRatio="16/9" />
+        {/* Pegatinas */}
+        <ProjectImage
+          src={image6}
+          alt="Pegatinas de Breakfast Touch"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Rollo poster y Camiseta */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image7,
-            alt: "Rollo de poster Breakfast Touch",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image8,
-            alt: "Camiseta de Breakfast Touch",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* Rollo poster y Camiseta */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image7,
+              alt: "Rollo de poster Breakfast Touch",
+            },
+            {
+              src: image8,
+              alt: "Camiseta de Breakfast Touch",
+            },
+          ]}
+        />
+      </div>
     </ProjectLayout>
-  )
+  );
 }
 
 export default BreakfastTouchProject

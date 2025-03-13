@@ -17,6 +17,12 @@ import image6 from "../../assets/images/projects/premium-technology/06_VallaObra
 import image7 from "../../assets/images/projects/premium-technology/07_Caja-Envio(doble izquierda).jpg"
 import image8 from "../../assets/images/projects/premium-technology/08_Web(doble derecha).jpg"
 
+
+// Definimos un aspect ratio consistente para todas las imágenes
+// Usamos 3/2 para que coincida con el aspecto de las imágenes en Home
+const CONSISTENT_ASPECT_RATIO = "3/2"
+
+
 const PremiumTechnologyProject: React.FC = () => {
   return (
     <ProjectLayout
@@ -46,51 +52,67 @@ const PremiumTechnologyProject: React.FC = () => {
         path: "/proyectos/zara",
       }}
     >
-      {/* Logo */}
-      <ProjectImage src={image1} alt="Logo de Premium Technology" aspectRatio="16/9" />
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+        {/* Logo */}
+        <ProjectImage
+          src={image1}
+          alt="Logo de Premium Technology"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Par de imágenes - Polos */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image2,
-            alt: "Polo frontal Premium Technology",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image3,
-            alt: "Polo trasero Premium Technology",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* Par de imágenes - Polos */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image2,
+              alt: "Polo frontal Premium Technology",
+            },
+            {
+              src: image3,
+              alt: "Polo trasero Premium Technology",
+            },
+          ]}
+        />
 
-      {/* Cartel 1 */}
-      <ProjectImage src={image4} alt="Cartel Premium Technology" aspectRatio="16/9" />
+        {/* Cartel 1 */}
+        <ProjectImage
+          src={image4}
+          alt="Cartel Premium Technology"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Cartel 2 */}
-      <ProjectImage src={image5} alt="Segundo cartel Premium Technology" aspectRatio="16/9" />
+        {/* Cartel 2 */}
+        <ProjectImage
+          src={image5}
+          alt="Segundo cartel Premium Technology"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Valla Obra */}
-      <ProjectImage src={image6} alt="Valla de obra Premium Technology" aspectRatio="16/9" />
+        {/* Valla Obra */}
+        <ProjectImage
+          src={image6}
+          alt="Valla de obra Premium Technology"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Par de imágenes - Caja y Web */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image7,
-            alt: "Caja de envío Premium Technology",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image8,
-            alt: "Diseño web Premium Technology",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* Par de imágenes - Caja y Web */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image7,
+              alt: "Caja de envío Premium Technology",
+            },
+            {
+              src: image8,
+              alt: "Diseño web Premium Technology",
+            },
+          ]}
+        />
+      </div>
     </ProjectLayout>
-  )
+  );
 }
 
 export default PremiumTechnologyProject

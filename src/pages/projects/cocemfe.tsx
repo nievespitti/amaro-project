@@ -18,13 +18,20 @@ import image7 from "../../assets/images/projects/cocemfe/07_Cartel Calle 02.jpg"
 import image8 from "../../assets/images/projects/cocemfe/08_IG 01.jpg"
 import image9 from "../../assets/images/projects/cocemfe/09_IG 02.jpg"
 
+// Definimos un aspect ratio consistente para todas las imágenes
+// Usamos 3/2 para que coincida con el aspecto de las imágenes en Home
+const CONSISTENT_ASPECT_RATIO = "3/2"
+
 const CocemfeProject: React.FC = () => {
   return (
     <ProjectLayout
       title="Cocemfe / Identidad visual"
       description="De la mano del equipo de Chocolate Comunicación dimos forma a la campaña 'Propósito Inclusión' para la Confederación Española de Personas con Discapacidad Física y Orgánica (COCEMFE), que, en esta ocasión, anima a las empresas a incluir en sus plantillas a personas con discapacidad. Usando la fotografía de nuestros cuatro protagonistas con discapacidad en sus puestos de trabajo como eje principal, trazamos un sistema geométrico y versátil que nos permitiera adaptar el contenido a piezas físicas y digitales. Los códigos planteados, así como los mensajes que sujetan la campaña, humanizan la situación del colectivo y proyectan, a su vez, una comunicación agradable y cercana."
       credits={[
-        { name: "Chocolate Comunicación", url: "https://chocolatecomunicacionsocial.es/" },
+        {
+          name: "Chocolate Comunicación",
+          url: "https://chocolatecomunicacionsocial.es/",
+        },
         { name: "Carlos Alba Studio", url: "https://www.carlosalba.com/" },
       ]}
       mainImage={{
@@ -40,51 +47,71 @@ const CocemfeProject: React.FC = () => {
         path: "/proyectos/gabilucas",
       }}
     >
-      {/* Imagen principal */}
-      <ProjectImage src={image1} alt="Cocemfe identidad visual overview" aspectRatio="16/9" />
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+        {/* Imagen principal */}
+        <ProjectImage
+          src={image1}
+          alt="Cocemfe identidad visual overview"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Primer par de imágenes */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image2,
-            alt: "Cocemfe collateral",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image3,
-            alt: "Cocemfe brand in use",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* Primer par de imágenes */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image2,
+              alt: "Cocemfe collateral",
+            },
+            {
+              src: image3,
+              alt: "Cocemfe brand in use",
+            },
+          ]}
+        />
 
-      {/* Segundo par de imágenes */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image4,
-            alt: "Cocemfe cartel",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image5,
-            alt: "Cocemfe bolsa",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* Segundo par de imágenes */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image4,
+              alt: "Cocemfe cartel",
+            },
+            {
+              src: image5,
+              alt: "Cocemfe bolsa",
+            },
+          ]}
+        />
 
-      {/* Imágenes individuales */}
-      <ProjectImage src={image6} alt="Cocemfe identidad visual 1" aspectRatio="16/9" />
+        {/* Imágenes individuales */}
+        <ProjectImage
+          src={image6}
+          alt="Cocemfe identidad visual 1"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      <ProjectImage src={image7} alt="Cocemfe identidad visual 2" aspectRatio="16/9" />
+        <ProjectImage
+          src={image7}
+          alt="Cocemfe identidad visual 2"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      <ProjectImage src={image8} alt="Cocemfe identidad visual 3" aspectRatio="16/9" />
+        <ProjectImage
+          src={image8}
+          alt="Cocemfe identidad visual 3"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      <ProjectImage src={image9} alt="Cocemfe identidad visual 4" aspectRatio="16/9" />
+        <ProjectImage
+          src={image9}
+          alt="Cocemfe identidad visual 4"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
+      </div>
     </ProjectLayout>
-  )
+  );
 }
 
 export default CocemfeProject

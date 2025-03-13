@@ -1,51 +1,52 @@
-// ProjectImageGrid.tsx
 import type React from "react";
-import { useMediaQuery } from "../hooks/useMediaQuery";
 
-interface ImportedImage {
+interface ImageProps {
   src: string;
-  [key: string]: any;
+  alt: string;
 }
 
+// Asegúrate de que esta interfaz incluya la propiedad aspectRatio
 interface ProjectImageGridProps {
-  images: Array<{
-    src: string | ImportedImage;
-    alt: string;
-    aspectRatio?: string;
-  }>;
+  images: ImageProps[];
+  aspectRatio?: string; // Definimos explícitamente la propiedad
   className?: string;
 }
 
 const ProjectImageGrid: React.FC<ProjectImageGridProps> = ({
-  images,
+  images = [],
+  aspectRatio = "3/2",
   className = "",
 }) => {
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const isLargeScreen = useMediaQuery("(min-width: 1600px)");
+  const safeImages = Array.isArray(images) ? images : [];
+
+  if (safeImages.length === 0) return null;
+
+  // Convertimos el aspect ratio a un formato que Tailwind pueda usar
+  const getAspectRatioClass = () => {
+    // Si es uno de los valores predefinidos de Tailwind, usamos la clase correspondiente
+    if (aspectRatio === "1/1") return "aspect-square";
+    if (aspectRatio === "16/9") return "aspect-video";
+    // Si no, usamos la sintaxis aspect-[width/height]
+    return `aspect-[${aspectRatio}]`;
+  };
 
   return (
-    <div
-      className={`grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 ${className}`}
-      style={{ maxWidth: isLargeScreen ? "1600px" : "none" }}
-    >
-      {images.map((image, index) => {
-        const imgSrc =
-          typeof image.src === "string" ? image.src : image.src.src;
-
-        // Usar los aspect ratios estándar si no se proporciona uno personalizado
-        const aspectRatio = image.aspectRatio || (isMobile ? "3/4" : "16/9");
-
-        return (
-          <div key={index} className="rounded-2xl overflow-hidden w-full">
+    <div className={`w-full my-8 md:my-12 lg:my-16 ${className}`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {safeImages.map((image, index) => (
+          <div
+            key={index}
+            className={`relative w-full overflow-hidden rounded-xl ${getAspectRatioClass()}`}
+          >
             <img
-              src={imgSrc || "/placeholder.svg"}
+              src={image.src || "/placeholder.svg"}
               alt={image.alt}
-              className={`w-full aspect-[${aspectRatio}] object-cover`}
+              className="absolute inset-0 w-full h-full object-cover"
               loading="lazy"
             />
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };

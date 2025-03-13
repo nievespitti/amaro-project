@@ -1,21 +1,24 @@
-import type React from "react"
-import ProjectLayout from "./ProjectLayout"
-import ProjectImage from "../../components/ProjectImage"
-import ProjectImageGrid from "../../components/ProjectImageGrid"
-import "../../index.css"
+import type React from "react";
+import ProjectLayout from "./ProjectLayout";
+import ProjectImage from "../../components/ProjectImage";
+import ProjectImageGrid from "../../components/ProjectImageGrid";
+import "../../index.css";
 
 // Importa las imágenes principales con versiones mobile/desktop
-import mainImageDesktop from "../../assets/images/projects/hector-leon/01_Hector Leon_App.jpg"
-import mainImageMobile from "../../assets/images/projects/hector-leon/mobile/01_Hector Leon_App_Mobile.jpg"
+import mainImageDesktop from "../../assets/images/projects/hector-leon/01_Hector Leon_App.jpg";
+import mainImageMobile from "../../assets/images/projects/hector-leon/mobile/01_Hector Leon_App_Mobile.jpg";
 // Importa las imágenes (reemplaza con las rutas correctas)
-import image1 from "../../assets/images/projects/hector-leon/01_Tarjetas.jpg"
-import image2 from "../../assets/images/projects/hector-leon/02_Tela (doble izquierda).jpg"
-import image3 from "../../assets/images/projects/hector-leon/03_Wall Mockup(doble derecha).jpg"
-import image4 from "../../assets/images/projects/hector-leon/04_Stickers.jpg"
-import image5 from "../../assets/images/projects/hector-leon/05_Camiseta.jpg"
-import image6 from "../../assets/images/projects/hector-leon/06_Ipad.jpg"
-import image7 from "../../assets/images/projects/hector-leon/07_Posters.jpg"
-import image8 from "../../assets/images/projects/hector-leon/08_Window Sign PSD Mockup.jpg"
+import image1 from "../../assets/images/projects/hector-leon/01_Tarjetas.jpg";
+import image2 from "../../assets/images/projects/hector-leon/02_Tela (doble izquierda).jpg";
+import image3 from "../../assets/images/projects/hector-leon/03_Wall Mockup(doble derecha).jpg";
+import image4 from "../../assets/images/projects/hector-leon/04_Stickers.jpg";
+import image5 from "../../assets/images/projects/hector-leon/05_Camiseta.jpg";
+import image6 from "../../assets/images/projects/hector-leon/06_Ipad.jpg";
+import image7 from "../../assets/images/projects/hector-leon/07_Posters.jpg";
+import image8 from "../../assets/images/projects/hector-leon/08_Window Sign PSD Mockup.jpg";
+
+// Definimos un aspect ratio consistente para todas las imágenes
+const CONSISTENT_ASPECT_RATIO = "3/2";
 
 const HectorLeonProject: React.FC = () => {
   return (
@@ -36,42 +39,66 @@ const HectorLeonProject: React.FC = () => {
         path: "/proyectos/la-boheme-studio",
       }}
     >
-      {/* Tarjetas */}
-      <ProjectImage src={image1} alt="Héctor León tarjetas de presentación" aspectRatio="16/9" />
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+        {/* Tarjetas */}
+        <ProjectImage
+          src={image1}
+          alt="Héctor León tarjetas de presentación"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Tela y Wall Mockup */}
-      <ProjectImageGrid
-        images={[
-          {
-            src: image2,
-            alt: "Héctor León tela",
-            aspectRatio: "4/3",
-          },
-          {
-            src: image3,
-            alt: "Héctor León wall mockup",
-            aspectRatio: "4/3",
-          },
-        ]}
-      />
+        {/* Tela y Wall Mockup */}
+        <ProjectImageGrid
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+          images={[
+            {
+              src: image2,
+              alt: "Héctor León tela",
+            },
+            {
+              src: image3,
+              alt: "Héctor León wall mockup",
+            },
+          ]}
+        />
 
-      {/* Stickers */}
-      <ProjectImage src={image4} alt="Héctor León stickers" aspectRatio="16/9" />
+        {/* Stickers */}
+        <ProjectImage
+          src={image4}
+          alt="Héctor León stickers"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Camiseta */}
-      <ProjectImage src={image5} alt="Héctor León camiseta" aspectRatio="16/9" />
+        {/* Camiseta */}
+        <ProjectImage
+          src={image5}
+          alt="Héctor León camiseta"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* iPad */}
-      <ProjectImage src={image6} alt="Héctor León diseño en iPad" aspectRatio="16/9" />
+        {/* iPad */}
+        <ProjectImage
+          src={image6}
+          alt="Héctor León diseño en iPad"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Posters */}
-      <ProjectImage src={image7} alt="Héctor León posters" aspectRatio="16/9" />
+        {/* Posters */}
+        <ProjectImage
+          src={image7}
+          alt="Héctor León posters"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
 
-      {/* Window Sign */}
-      <ProjectImage src={image8} alt="Héctor León window sign mockup" aspectRatio="16/9" />
+        {/* Window Sign */}
+        <ProjectImage
+          src={image8}
+          alt="Héctor León window sign mockup"
+          aspectRatio={CONSISTENT_ASPECT_RATIO}
+        />
+      </div>
     </ProjectLayout>
-  )
-}
+  );
+};
 
-export default HectorLeonProject
-
+export default HectorLeonProject;

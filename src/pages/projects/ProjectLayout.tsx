@@ -107,7 +107,7 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
 
           {/* Contenido del proyecto */}
           <div
-            className="mt-16 md:mt-16 mb-16 w-full md:w-[100%] lg:w-[100%] xl:w-[85%] 2xl:w-[80%] space-y-6 md:space-y-8"
+            className="mt-16 md:mt-16 mb-16 w-full md:w-[90%] lg:w-[90%] xl:w-[85%] 2xl:w-[80%] space-y-6 md:space-y-8"
             style={{ maxWidth: isLargeScreen ? "1600px" : "none" }}
           >
             <h1 className="sm:text-[28px] md:text-[32px] lg:text-[38px] leading-tight custom-font text-[#090F4C] mb-4">
