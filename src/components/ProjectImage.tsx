@@ -1,14 +1,14 @@
 // ProjectImage.tsx
 import type React from "react";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
-// Define un tipo personalizado para imágenes importadas
 interface ImportedImage {
-  src: string
-  [key: string]: any // Para cualquier otra propiedad que pueda tener
+  src: string;
+  [key: string]: any;
 }
 
 interface ProjectImageProps {
-  src: string | ImportedImage; // Modificado para aceptar ambos tipos
+  src: string | ImportedImage;
   alt: string;
   aspectRatio?: string;
   className?: string;
@@ -17,11 +17,16 @@ interface ProjectImageProps {
 const ProjectImage: React.FC<ProjectImageProps> = ({
   src,
   alt,
-  aspectRatio = "16/9",
+  aspectRatio,
   className = "",
 }) => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   // Convertir src a string si es un módulo importado
   const imgSrc = typeof src === "string" ? src : src.src;
+
+  // Usar los aspect ratios estándar si no se proporciona uno personalizado
+  const finalAspectRatio = aspectRatio || (isMobile ? "3/4" : "16/9");
 
   return (
     <div className={`mb-6 w-full ${className}`}>
@@ -29,7 +34,7 @@ const ProjectImage: React.FC<ProjectImageProps> = ({
         <img
           src={imgSrc || "/placeholder.svg"}
           alt={alt}
-          className={`w-full aspect-[${aspectRatio}] object-cover`}
+          className={`w-full aspect-[${finalAspectRatio}] object-cover`}
         />
       </div>
     </div>

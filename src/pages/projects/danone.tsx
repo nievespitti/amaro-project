@@ -44,7 +44,7 @@ const DanoneProject: React.FC = () => {
       <ProjectImage src={image1} alt="Bolsa Danone" aspectRatio="16/9" />
 
       {/* Pegatinas */}
-      <ProjectImage src={image2} alt="Pegatinas Danone" aspectRatio="4/3" />
+      <ProjectImage src={image2} alt="Pegatinas Danone" aspectRatio="16/9" />
 
       {/* Par de imágenes */}
       <ProjectImageGrid
