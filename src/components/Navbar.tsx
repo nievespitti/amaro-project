@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import logoSymbol from "../assets/images/logo-symbol.svg";
 import logo from "../assets/images/logo-full.svg";
@@ -12,6 +12,8 @@ const Navbar: React.FC = () => {
   const [isProjectsMenuOpen, setIsProjectsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const navigate = useNavigate();
+
 
   const location = useLocation();
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
@@ -31,18 +33,17 @@ const Navbar: React.FC = () => {
   ];
 
   // Función para manejar el scroll a secciones
-  const scrollToSection = (sectionId: string) => {
-    if (location.pathname !== "/") {
-      // Navegar a la página principal y luego hacer scroll
-      window.history.pushState({ scrollTo: sectionId }, "", "/");
-      window.location.reload(); // Forzar recarga para aplicar el estado
-    } else {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+const scrollToSection = (sectionId: string) => {
+  if (location.pathname !== "/") {
+    navigate("/", { state: { scrollTo: sectionId } });
+  } else {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }
+};
+
 
   // Efecto para manejar el scroll cuando se navega a la página principal
   useEffect(() => {
