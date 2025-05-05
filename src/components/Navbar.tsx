@@ -11,10 +11,8 @@ import { useMediaQuery } from "../hooks/useMediaQuery";
 const Navbar: React.FC = () => {
   const [isProjectsMenuOpen, setIsProjectsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  //const [lastScrollY, setLastScrollY] = useState(0);
   const navigate = useNavigate();
-
-
   const location = useLocation();
   const isLargeScreen = useMediaQuery("(min-width: 1024px)");
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -33,36 +31,46 @@ const Navbar: React.FC = () => {
   ];
 
   // Función para manejar el scroll a secciones
+
 const scrollToSection = (sectionId: string) => {
   if (location.pathname !== "/") {
     navigate("/", { state: { scrollTo: sectionId } });
   } else {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
+      section.scrollIntoView({ behavior: "auto" });
     }
   }
 };
 
 
-  // Efecto para manejar el scroll cuando se navega a la página principal
-  useEffect(() => {
-    if (
-      location.pathname === "/" &&
-      location.state &&
-      location.state.scrollTo
-    ) {
-      setTimeout(() => {
-        const section = document.getElementById(location.state.scrollTo);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    }
-  }, [location]);
 
-  // Cerrar menús al hacer clic fuera
-  useEffect(() => {
+useEffect(() => {
+  if (
+    location.pathname === "/" &&
+    location.state &&
+    (location.state as any).scrollTo
+  ) {
+    // Si hay que hacer scroll a una sección concreta
+    const scrollTo = (location.state as any).scrollTo;
+    setTimeout(() => {
+      const section = document.getElementById(scrollTo);
+      if (section) {
+        section.scrollIntoView({ behavior: "auto" });
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: "auto",
+        });
+      }
+    }, 100); // ¡ponemos 100ms de espera para que el DOM cargue!
+  } else {
+    // Si solo es navegar a otra página normal
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest(".projects-menu-container")) {
@@ -71,11 +79,14 @@ const scrollToSection = (sectionId: string) => {
     };
 
     document.addEventListener("click", handleClickOutside);
+
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }
+}, [location]);
 
+ 
   return (
     <nav
       className={`right-0 bg-white z-50 py-6 transition-all duration-300 ${

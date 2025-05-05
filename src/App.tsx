@@ -32,11 +32,11 @@ function ScrollToTop() {
               behavior: "smooth",
               block: "start",
             });
-                      <section
-                        id="Contacto"
-                        className="mt-16 mb-16 w-[85%]"
-                        style={{ scrollMarginTop: "100px" }}
-                      ></section>;
+                      // <section
+                      //   id="Contacto"
+                      //   className="mt-16 mb-16 w-[85%]"
+                      //   style={{ scrollMarginTop: "100px" }}
+                      // ></section>;
 
           }
         }, 100);
@@ -46,10 +46,12 @@ function ScrollToTop() {
       }
     } else {
       // Para otras navegaciones, desplázate al principio de la página
-      window.scrollTo({
-        top: 0,
-        behavior: "instant", // Cambiado de "auto" a "instant" para un scroll inmediato
-      });
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "auto", // Puedes probar también "smooth" si quieres que suba suavemente
+        });
+      }, 100);
     }
   }, [pathname, state, navigate]);
 

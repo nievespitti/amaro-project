@@ -41,6 +41,8 @@ const BreakfastTouchProject: React.FC = () => {
         path: "/proyectos/hector-leon",
       }}
     >
+
+
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         {/* Spotify */}
         <ProjectImage

@@ -3,10 +3,13 @@
 import type React from "react"
 import { motion } from "framer-motion"
 import { useMediaQuery } from "../hooks/useMediaQuery"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component"
 import "react-lazy-load-image-component/src/effects/blur.css"
 import Footer from "../components/Footer"
+import { useEffect } from "react";
+
+
 
 
 import gifHorizontal from "../assets/images/GIF-Home-Horizontal.gif";
@@ -38,6 +41,8 @@ import hidrovoltMobile from "../assets/images/projects/hidrovolt/mobile/01_Hidro
 import InstagramIcon from "../assets/images/icons/InstagramIcon.png"
 import LinkedInIcon from "../assets/images/icons/LinkedinIcon.png"
 import SpotifyIcon from "../assets/images/icons/SpotifyIcon.png"
+
+
 
 const projects = [
   {
@@ -106,7 +111,17 @@ const projects = [
 ]
 
 const Home: React.FC = () => {
-  const isMobile = useMediaQuery("(max-width: 768px)")
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  // const navigate = useNavigate();
+
+      // function navigateToProject(path: string): void {
+      //   // Simplemente navegamos a la ruta
+      //   navigate(path);
+      // }
+/*   // Efecto para asegurar que las páginas se muestren desde arriba
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]); */
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -167,7 +182,7 @@ const Home: React.FC = () => {
                       alt={project.title}
                       effect="blur"
                       className={`w-full ${
-                        isMobile ? "aspect-[3/4]" : "aspect-[3/2]"
+                        isMobile ? "aspect-[3/2]" : "aspect-[3/2]"
                       } object-cover rounded-xl block`}
                       wrapperClassName="block"
                     />
@@ -180,12 +195,14 @@ const Home: React.FC = () => {
             ))}
           </div>
 
-          {/* Sección de contacto */}
+          {/* Sección de contacto
           <section
             id="Contacto"
             className="mt-16 mb-16 w-[85%]"
             style={{ scrollMarginTop: "100px" }}
-          >
+          > */}
+
+          <div id="Contacto" className="mt-0 mb-8 w-[70%] space-y-2">
             <div className="space-y-8">
               <p className="sm:text-[28px] md:text-[38px] lg:text-[38px] leading-tight custom-font text-[#090F4C]">
                 ¿Trabajamos juntos?
@@ -203,53 +220,54 @@ const Home: React.FC = () => {
                 </p>
               </div>
             </div>
+          </div>
 
-            {/* Iconos de redes sociales */}
-            <div className="flex gap-6 mt-8">
-              <a
-                href="https://www.instagram.com/paulaamaro_/?hl=es"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Síguenos en Instagram"
-                className="text-[#090F4C] hover:opacity-70 transition-opacity"
-              >
-                <img
-                  src={InstagramIcon || "/placeholder.svg"}
-                  alt="Instagram"
-                  width="48"
-                  height="48"
-                />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/paula-amaro-7157b7158/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Síguenos en LinkedIn"
-                className="text-[#090F4C] hover:opacity-70 transition-opacity"
-              >
-                <img
-                  src={LinkedInIcon || "/placeholder.svg"}
-                  alt="LinkedIn"
-                  width="48"
-                  height="48"
-                />
-              </a>
-              <a
-                href="https://open.spotify.com/playlist/1ZxKFrYGA4kl89syA3zsHe"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Escúchanos en Spotify"
-                className="text-[#090F4C] hover:opacity-70 transition-opacity"
-              >
-                <img
-                  src={SpotifyIcon || "/placeholder.svg"}
-                  alt="Spotify"
-                  width="48"
-                  height="48"
-                />
-              </a>
-            </div>
-          </section>
+          {/* Iconos de redes sociales */}
+          <div className="flex gap-6 mt-8">
+            <a
+              href="https://www.instagram.com/paulaamaro_/?hl=es"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Síguenos en Instagram"
+              className="text-[#090F4C] hover:opacity-70 transition-opacity"
+            >
+              <img
+                src={InstagramIcon || "/placeholder.svg"}
+                alt="Instagram"
+                width="48"
+                height="48"
+              />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/paula-amaro-7157b7158/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Síguenos en LinkedIn"
+              className="text-[#090F4C] hover:opacity-70 transition-opacity"
+            >
+              <img
+                src={LinkedInIcon || "/placeholder.svg"}
+                alt="LinkedIn"
+                width="48"
+                height="48"
+              />
+            </a>
+            <a
+              href="https://open.spotify.com/playlist/1ZxKFrYGA4kl89syA3zsHe"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Escúchanos en Spotify"
+              className="text-[#090F4C] hover:opacity-70 transition-opacity"
+            >
+              <img
+                src={SpotifyIcon || "/placeholder.svg"}
+                alt="Spotify"
+                width="48"
+                height="48"
+              />
+            </a>
+          </div>
+          {/* </section> */}
         </div>
       </motion.div>
 

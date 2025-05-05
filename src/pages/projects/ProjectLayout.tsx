@@ -52,20 +52,11 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
       ? { desktop: mainImage, mobile: mainImage }
       : mainImage;
 
-  // Este efecto se ejecuta cuando cambia la ruta
-  useEffect(() => {
-    // Scroll al inicio cuando cambia la ruta
-    window.scrollTo({
-      top: 0,
-      behavior: "instant", // Usamos "instant" para un scroll inmediato
-    });
-  }, [location.pathname]);
-
-  function navigateToProject(path: string): void {
-    // Simplemente navegamos a la ruta
-    navigate(path);
-  }
-
+        useEffect(() => {
+          // Aseguramos que cuando se cargue cualquier página del proyecto, siempre haga scroll al principio
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, [location]);
+        
   return (
     <div className="project-layout flex flex-col min-h-screen">
       <motion.div
@@ -153,7 +144,6 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
               {previousProject ? (
                 <Link
                   to={previousProject.path}
-                  onClick={() => navigateToProject(previousProject.path)}
                   className="flex items-center gap-2 text-[14px] hover:text-opacity-70 transition-colors"
                 >
                   <ArrowLeft size={20} />
@@ -165,7 +155,6 @@ const ProjectLayout: React.FC<ProjectLayoutProps> = ({
               {nextProject && (
                 <Link
                   to={nextProject.path}
-                  onClick={() => navigateToProject(nextProject.path)}
                   className="flex items-center gap-2 text-[14px] hover:text-opacity-70 transition-colors"
                 >
                   <span>Proyecto siguiente</span>
